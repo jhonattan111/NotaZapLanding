@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+
+const benefits = [
+  {
+    icon: 'phone' as const,
+    title: 'Sem computador',
+    text: 'Tudo acontece no celular, dentro do WhatsApp que você já tem.',
+  },
+  {
+    icon: 'clock' as const,
+    title: 'Em 1 minuto ou menos',
+    text: 'Da primeira mensagem ao PDF emitido em menos de um minuto.',
+  },
+  {
+    icon: 'pin' as const,
+    title: 'De qualquer lugar',
+    text: 'No balcão, na obra, no carro. A qualquer hora, qualquer dia.',
+  },
+  {
+    icon: 'shield' as const,
+    title: 'Sempre na lei',
+    text: 'Cálculo de impostos e envio para a prefeitura por nossa conta.',
+  },
+];
+---
+
+<section class="oa-sec">
+  <div class="oa-kicker">Por que é diferente</div>
+  <h2 class="oa-h2 oa-serif">Feito para quem não tem tempo a perder.</h2>
+  <p class="oa-lead">
+    Nada de instalar programa ou ligar o computador. O que você já usa todo dia
+    basta.
+  </p>
+  <div class="oa-bens">
+    {
+      benefits.map((b) => (
+        <div class="oa-ben">
+          <div class="bi">
+            <Icon name={b.icon} />
+          </div>
+          <h3>{b.title}</h3>
+          <p>{b.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

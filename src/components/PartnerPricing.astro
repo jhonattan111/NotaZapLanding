@@ -1,0 +1,94 @@
+---
+import Icon from './Icon.astro';
+import { PARTNER_PLANS } from '../data/partnerPlans';
+import { partnerWhatsappLink } from '../config';
+---
+
+<section class="oa-sec" id="pacotes">
+  <div class="oa-kicker">Pacotes para o escritório parceiro</div>
+  <h2 class="oa-h2 oa-serif">Quanto mais clientes, menor o custo.</h2>
+  <p class="oa-lead">
+    Você contrata uma capacidade de clientes ativos e paga mensalidade fixa via
+    cartão recorrente — independente da ocupação. Vale a pena ativar toda a
+    capacidade contratada.
+  </p>
+
+  <div class="par-legend">
+    <span><i class="green"></i> Seu custo e sua margem por cliente</span>
+    <span><i class="amber"></i> Preço mínimo de revenda obrigatório</span>
+  </div>
+
+  <div class="par-pricing-scroll">
+    <table class="par-table">
+      <thead>
+        <tr>
+          <th class="rowlabel" scope="col"><span class="visually-hidden">Recurso</span></th>
+          {
+            PARTNER_PLANS.map((p) => (
+              <th scope="col">
+                <span class="pkg">
+                  {p.name}
+                  <small>{p.clientes}</small>
+                </span>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="rowlabel" scope="row">Mensalidade NotaZap</th>
+          {
+            PARTNER_PLANS.map((p) => (
+              <td>
+                <span class="par-price">R$ {p.mensalidade}<span>/mês</span></span>
+              </td>
+            ))
+          }
+        </tr>
+        <tr class="row-cost">
+          <th class="rowlabel" scope="row">Custo por cliente/mês</th>
+          {PARTNER_PLANS.map((p) => <td>R$ {p.custoCliente}</td>)}
+        </tr>
+        <tr class="row-resale">
+          <th class="rowlabel" scope="row">Preço mínimo de revenda</th>
+          {PARTNER_PLANS.map((p) => <td>R$ {p.revenda}</td>)}
+        </tr>
+        <tr class="row-margin">
+          <th class="rowlabel" scope="row">Margem bruta mínima por cliente</th>
+          {PARTNER_PLANS.map((p) => <td>R$ {p.margem}</td>)}
+        </tr>
+        <tr>
+          <td class="rowlabel"></td>
+          {
+            PARTNER_PLANS.map((p) => (
+              <td class="cta-cell">
+                <a class="par-pkg-cta" href={partnerWhatsappLink(p.name)}>
+                  <Icon name="bubble" size={13} /> Contratar
+                </a>
+              </td>
+            ))
+          }
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="par-note">
+    A margem é bruta e mínima: você pode cobrar acima de R$ 29,90/mês e ampliar o
+    ganho por cliente. <br />
+    * No pacote Master (ilimitado), o custo por cliente cai conforme você ativa
+    mais clientes — valores estimados para ~120 clientes ativos.
+  </p>
+</section>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { partnerWhatsappLink } from '../config';
+---
+
+<section class="oa-sec" style="border-top:none;">
+  <div class="par-final">
+    <h2>Pronto para virar parceiro NotaZap?</h2>
+    <p>
+      Fale com a gente pelo WhatsApp, escolha o pacote ideal para o tamanho da
+      sua carteira e comece a revender ainda esta semana.
+    </p>
+    <a class="oa-btn-primary" href={partnerWhatsappLink()}>
+      <Icon name="bubble" size={15} /> Quero ser parceiro
+    </a>
+  </div>
+</section>

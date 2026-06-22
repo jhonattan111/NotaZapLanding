@@ -1,0 +1,38 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Mande um “oi”',
+    text: 'Abra a conversa do NotaZap e mande um “oi” — como qualquer mensagem.',
+  },
+  {
+    n: '02',
+    title: 'Toque nos botões',
+    text: 'Escolha o cliente, o valor e o serviço tocando nos botões que aparecem.',
+  },
+  {
+    n: '03',
+    title: 'Receba o PDF',
+    text: 'A nota volta pronta na conversa, dentro da lei, em segundos.',
+  },
+];
+---
+
+<section class="oa-sec" id="como-funciona" style="border-top:none; padding-top:0;">
+  <div class="oa-kicker">Como funciona</div>
+  <h2 class="oa-h2 oa-serif">Mais fácil do que mandar um “oi”.</h2>
+  <p class="oa-lead">
+    Você conversa, o NotaZap emite. Nenhuma tela nova para aprender.
+  </p>
+  <div class="oa-steps">
+    {
+      steps.map((s) => (
+        <div class="oa-step">
+          <span class="n">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

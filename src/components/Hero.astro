@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+import WAChat from './WAChat.astro';
+import { WHATSAPP_LINK } from '../config';
+---
+
+<div class="oa-wrap">
+  <section class="oa-hero">
+    <div>
+      <span class="oa-eyebrow"
+        ><span class="dot"></span>Nota fiscal sem complicação</span
+      >
+      <h1 class="oa-h1 oa-serif">
+        Sua nota fiscal cabe numa <em>conversa</em>.
+      </h1>
+      <p class="oa-sub">
+        Emita NF-e e NFS-e direto no WhatsApp. Sem sistema, sem login, sem
+        contador do lado. Cinco toques e pronto.
+      </p>
+      <div class="oa-cta-row">
+        <a
+          class="oa-btn-primary"
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="bubble" size={15} /> Emitir minha primeira nota
+        </a>
+        <a class="oa-btn-ghost" href="#como-funciona">Ver como funciona →</a>
+      </div>
+      <div class="oa-trust">
+        <span class="oa-avs"><span></span><span></span><span></span></span>
+        +12 mil pequenos negócios já emitem por aqui
+      </div>
+    </div>
+    <WAChat />
+  </section>
+</div>

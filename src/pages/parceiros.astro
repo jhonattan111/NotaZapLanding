@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PartnerHero from '../components/PartnerHero.astro';
+import PartnerLogic from '../components/PartnerLogic.astro';
+import PartnerPricing from '../components/PartnerPricing.astro';
+import PartnerCTA from '../components/PartnerCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Programa de Parceiros — NotaZap para escritórios contábeis"
+  description="Revenda o NotaZap com a sua marca de escritório. Pacotes de R$ 149,90 a R$ 999,90/mês, margem a partir de R$ 14,91 por cliente. Receita recorrente para o contador, emissão fiscal pelo WhatsApp para o cliente."
+>
+  <Navbar />
+  <PartnerHero />
+  <div class="oa-wrap">
+    <PartnerLogic />
+    <PartnerPricing />
+    <PartnerCTA />
+  </div>
+  <Footer />
+</Layout>

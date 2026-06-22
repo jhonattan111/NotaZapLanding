@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+
+// Lógica estratégica do canal (13.1) traduzida em benefícios para o escritório.
+const reasons = [
+  {
+    icon: 'phone' as const,
+    title: 'A confiança já é sua',
+    text: 'O escritório é o intermediário natural entre o cliente e qualquer obrigação fiscal. Você entrega uma solução pronta sem abalar essa relação.',
+  },
+  {
+    icon: 'clock' as const,
+    title: 'Nova receita recorrente',
+    text: 'Some uma linha de margem mensal à sua carteira atual. Quanto mais clientes você ativa, menor o custo por cliente e maior o lucro líquido.',
+  },
+  {
+    icon: 'pin' as const,
+    title: 'Canal escalável e barato',
+    text: 'Em vez de convencer 500 autônomos um a um, o NotaZap chega ao mercado por meio de escritórios que já têm a carteira pronta.',
+  },
+  {
+    icon: 'shield' as const,
+    title: 'Revenda com a marca NotaZap',
+    text: '"Solução NotaZap recomendada pelo seu escritório": você mantém a credibilidade da marca e o valor percebido, e captura a margem de revenda.',
+  },
+];
+---
+
+<section class="oa-sec" id="como-funciona-parceiro">
+  <div class="oa-kicker">Por que revender</div>
+  <h2 class="oa-h2 oa-serif">15 escritórios, 500 clientes cada.</h2>
+  <p class="oa-lead">
+    O Programa de Parceiros inverte a conta da venda direta: menos CAC, menos
+    suporte pulverizado, mais distribuição por quem já tem a confiança do
+    contribuinte.
+  </p>
+  <div class="oa-bens">
+    {
+      reasons.map((r) => (
+        <div class="oa-ben">
+          <div class="bi">
+            <Icon name={r.icon} />
+          </div>
+          <h3>{r.title}</h3>
+          <p>{r.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

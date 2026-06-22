@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { partnerWhatsappLink } from '../config';
+---
+
+<div class="oa-wrap">
+  <section class="par-hero">
+    <div>
+      <span class="oa-eyebrow"
+        ><span class="dot"></span>Programa de Parceiros · B2B2C</span
+      >
+      <h1 class="oa-h1 oa-serif">
+        Transforme sua carteira em <em>receita recorrente</em>.
+      </h1>
+      <p class="oa-sub">
+        Seu escritório já tem a confiança do cliente e já é cobrado pela emissão
+        de notas. Revenda o NotaZap como solução do seu escritório, capture a
+        margem e fortaleça o vínculo — sem desenvolver nada.
+      </p>
+      <div class="oa-cta-row">
+        <a class="oa-btn-primary" href={partnerWhatsappLink()}>
+          <Icon name="bubble" size={15} /> Quero ser parceiro
+        </a>
+        <a class="oa-btn-ghost" href="#pacotes">Ver pacotes e preços →</a>
+      </div>
+      <div class="par-badges">
+        <span class="par-badge"><span class="dot"></span>Marca NotaZap</span>
+        <span class="par-badge"><span class="dot"></span>Mensalidade fixa</span>
+        <span class="par-badge"><span class="dot"></span>Você define o preço de revenda</span>
+      </div>
+    </div>
+
+    <!-- Exemplo ilustrativo de margem (pacote Pro, carteira cheia) -->
+    <div class="par-card">
+      <div class="tag">Exemplo · Pacote Pro</div>
+      <div class="par-line">
+        70 clientes × R$ 29,90<span class="v">R$ 2.093/mês</span>
+      </div>
+      <div class="par-line">
+        Mensalidade NotaZap<span class="v">− R$ 649,90</span>
+      </div>
+      <div class="par-line total">
+        Sua margem<span class="v">R$ 1.443/mês</span>
+      </div>
+      <p class="foot">
+        Receita de revenda com a carteira cheia, menos o custo fixo do pacote.
+        Você pode cobrar acima de R$ 29,90 e ampliar a margem.
+      </p>
+    </div>
+  </section>
+</div>
