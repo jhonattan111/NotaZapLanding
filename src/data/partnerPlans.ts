@@ -17,7 +17,14 @@ export interface PartnerPlan {
   revenda: string;
   /** Margem bruta mínima por cliente (R$/mês). Linha verde. */
   margem: string;
+  /** WhatsApp de contato deste pacote (formato internacional, só dígitos). */
+  phone: string;
 }
+
+/** WhatsApp comercial para Starter, Growth e Pro: (22) 99216-4166. */
+const PHONE_SGP = '5522992164166';
+/** WhatsApp comercial para o Master: (22) 99961-2008. */
+const PHONE_MASTER = '5522999612008';
 
 export const PARTNER_PLANS: PartnerPlan[] = [
   {
@@ -28,6 +35,7 @@ export const PARTNER_PLANS: PartnerPlan[] = [
     custoCliente: '14,99',
     revenda: '29,90',
     margem: '14,91',
+    phone: PHONE_SGP,
   },
   {
     key: 'growth',
@@ -37,6 +45,7 @@ export const PARTNER_PLANS: PartnerPlan[] = [
     custoCliente: '11,66',
     revenda: '29,90',
     margem: '18,24',
+    phone: PHONE_SGP,
   },
   {
     key: 'pro',
@@ -46,6 +55,7 @@ export const PARTNER_PLANS: PartnerPlan[] = [
     custoCliente: '9,28',
     revenda: '29,90',
     margem: '20,62',
+    phone: PHONE_SGP,
   },
   {
     key: 'master',
@@ -55,5 +65,6 @@ export const PARTNER_PLANS: PartnerPlan[] = [
     custoCliente: '< 8,33*',
     revenda: '29,90',
     margem: '> 21,57',
+    phone: PHONE_MASTER,
   },
 ];

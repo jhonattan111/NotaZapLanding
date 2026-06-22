@@ -1,0 +1,31 @@
+# dependências e build (reinstalados/recriados dentro da imagem)
+node_modules
+dist
+.astro
+
+# artefatos de dev
+.vscode
+.idea
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# git e meta
+.git
+.gitignore
+.github
+
+# docker (não precisa entrar no contexto da imagem)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# referências de design (não fazem parte do site de produção)
+prototype
+standalone
+README.md
+
+# ambiente local
+.env
+.env.*
+.DS_Store

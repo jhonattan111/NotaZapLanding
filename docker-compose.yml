@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: notazap-landing:latest
+    container_name: notazap-landing
+    restart: unless-stopped
+    ports:
+      # host:container — ajuste a porta do host conforme necessário
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
