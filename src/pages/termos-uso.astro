@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY } from '../config';
+---
+
+<Layout
+  title="Termos de Uso — NotaZap"
+  description="Condições de uso do NotaZap, serviço de emissão de notas fiscais pelo WhatsApp."
+  noindex={true}
+>
+  <Navbar />
+  <div class="oa-wrap">
+    <article class="oa-legal">
+      <p class="updated">Última atualização: {COMPANY.atualizacao}</p>
+      <h1 class="oa-serif">Termos de Uso</h1>
+      <p class="intro">
+        Estes Termos regulam o uso do {COMPANY.nome}, serviço de emissão de notas
+        fiscais (NF-e e NFS-e) operado pelo WhatsApp. Ao utilizar o serviço, você
+        concorda com as condições abaixo.
+      </p>
+
+      <h2>1. Aceitação</h2>
+      <p>
+        Ao iniciar uma conversa com o {COMPANY.nome} e/ou contratar um plano, você
+        declara ter lido e aceito estes Termos e a nossa
+        <a href="/politica-privacidade/">Política de Privacidade</a>. Se não
+        concordar, não utilize o serviço.
+      </p>
+
+      <h2>2. Descrição do serviço</h2>
+      <p>
+        O {COMPANY.nome} permite emitir, cancelar e consultar notas fiscais por
+        meio de uma conversa no WhatsApp, calculando os impostos aplicáveis e
+        transmitindo as informações aos órgãos competentes. O serviço é uma
+        ferramenta de apoio à emissão; a responsabilidade pelas informações
+        prestadas é do usuário.
+      </p>
+
+      <h2>3. Cadastro e conta</h2>
+      <ul>
+        <li>Você deve fornecer informações verdadeiras, completas e atualizadas;</li>
+        <li>É responsável por manter a confidencialidade do acesso à sua conta e ao número de WhatsApp vinculado;</li>
+        <li>O serviço destina-se a maiores de 18 anos com capacidade civil e a pessoas jurídicas regularmente constituídas.</li>
+      </ul>
+
+      <h2>4. Uso pelo WhatsApp</h2>
+      <p>
+        A operação ocorre por mensagens no WhatsApp. Você se compromete a usar o
+        serviço de forma lícita, sem tentar fraudar, sobrecarregar ou
+        comprometer a plataforma, e a não emitir notas com dados falsos ou para
+        operações inexistentes.
+      </p>
+
+      <h2>5. Responsabilidade fiscal</h2>
+      <p>
+        Os dados informados (valores, descrição, tomador, alíquotas e regime
+        tributário) são de sua responsabilidade. O {COMPANY.nome} processa a
+        emissão com base nessas informações, mas não substitui a orientação de um
+        contador. Cabe a você conferir a exatidão das notas emitidas e cumprir
+        suas obrigações fiscais.
+      </p>
+
+      <h2>6. Programa de Parceiros (revenda)</h2>
+      <p>
+        Escritórios contábeis podem contratar pacotes para revenda do
+        {COMPANY.nome} aos seus clientes, sob o modelo B2B2C. O parceiro paga
+        mensalidade fixa conforme o pacote contratado, observa o preço mínimo de
+        revenda definido e é responsável pelo relacionamento e cobrança junto aos
+        seus próprios clientes. Condições comerciais específicas são definidas no
+        ato da contratação do parceiro.
+      </p>
+
+      <h2>7. Planos, pagamentos e renovação</h2>
+      <ul>
+        <li>O serviço é prestado mediante assinatura, conforme o plano escolhido;</li>
+        <li>As cobranças são recorrentes (ex.: cartão de crédito) e renovadas automaticamente até o cancelamento;</li>
+        <li>Os valores e capacidades de cada pacote são os vigentes no momento da contratação e podem ser reajustados mediante aviso prévio.</li>
+      </ul>
+
+      <h2>8. Cancelamento e suspensão</h2>
+      <p>
+        Você pode cancelar a assinatura a qualquer momento, com efeito ao fim do
+        ciclo já pago. Podemos suspender ou encerrar o acesso em caso de violação
+        destes Termos, uso fraudulento ou determinação legal.
+      </p>
+
+      <h2>9. Propriedade intelectual</h2>
+      <p>
+        A marca {COMPANY.nome}, o software, os textos e os elementos visuais são
+        protegidos e de titularidade da empresa. O uso do serviço não transfere
+        qualquer direito de propriedade intelectual a você.
+      </p>
+
+      <h2>10. Limitação de responsabilidade</h2>
+      <p>
+        O serviço é fornecido "no estado em que se encontra". Não nos
+        responsabilizamos por indisponibilidades de terceiros (como WhatsApp,
+        prefeituras ou operadoras), nem por danos decorrentes de informações
+        incorretas fornecidas pelo usuário. Nossa responsabilidade, quando
+        cabível, limita-se aos valores pagos pelo serviço nos últimos 12 meses.
+      </p>
+
+      <h2>11. Alterações dos Termos</h2>
+      <p>
+        Podemos atualizar estes Termos a qualquer momento. A data da última
+        revisão consta no topo, e mudanças relevantes serão comunicadas. O uso
+        continuado após a alteração representa concordância com a nova versão.
+      </p>
+
+      <h2>12. Lei aplicável e foro</h2>
+      <p>
+        Estes Termos são regidos pelas leis da República Federativa do Brasil.
+        Fica eleito o foro da comarca de {COMPANY.foro} para dirimir controvérsias,
+        com renúncia a qualquer outro, por mais privilegiado que seja.
+      </p>
+
+      <h2>13. Contato</h2>
+      <p>
+        Dúvidas sobre estes Termos:
+        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+      </p>
+
+      <hr />
+      <a class="back" href="/">← Voltar para o início</a>
+    </article>
+  </div>
+  <Footer />
+</Layout>

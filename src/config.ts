@@ -24,3 +24,27 @@ export function partnerWhatsappLink(plano?: string, phone?: string): string {
     : 'Quero ser parceiro NotaZap.';
   return `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
 }
+
+/**
+ * Dados da empresa usados nas páginas legais (política de privacidade e termos).
+ * Os valores marcados como "a confirmar" são placeholders — substituir pelos
+ * dados jurídicos reais antes do lançamento.
+ */
+export const COMPANY = {
+  /** Nome comercial / marca. */
+  nome: 'NotaZap',
+  /** Razão social registrada. */
+  razaoSocial: 'EQUILIBRI APP SISTEMAS LTDA - ME',
+  /** CNPJ. */
+  cnpj: '33.733.419/0001-01',
+  /** Endereço da sede. */
+  endereco: 'R ANTONIO LOPES SERTA 185 ANDAR 1 SALA',
+  /** E-mail de contato geral. */
+  email: 'contato@notazap.com.br',
+  /** Canal do Encarregado de Dados (DPO), conforme LGPD. */
+  emailPrivacidade: 'privacidade@notazap.com.br',
+  /** Comarca/foro eleito para os Termos de Uso. */
+  foro: 'Nova Friburgo/RJ',
+  /** Data da última atualização dos documentos legais. */
+  atualizacao: '22 de junho de 2026',
+} as const;

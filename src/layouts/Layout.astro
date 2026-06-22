@@ -4,12 +4,15 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  /** Marca a página como não indexável (páginas ocultas, ex.: legais). */
+  noindex?: boolean;
 }
 
 const {
   title = 'NotaZap — Sua nota fiscal cabe numa conversa',
   description =
     'Emita NF-e e NFS-e direto no WhatsApp. Sem sistema, sem login, sem contador do lado. Cinco toques e pronto.',
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -25,6 +28,7 @@ const ogImage = new URL('/assets/logo-horizontal.png', Astro.site);
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/assets/mark-green.png" />
 

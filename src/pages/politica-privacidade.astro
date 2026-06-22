@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY } from '../config';
+---
+
+<Layout
+  title="Política de Privacidade — NotaZap"
+  description="Como o NotaZap coleta, usa, compartilha e protege seus dados pessoais, conforme a LGPD."
+  noindex={true}
+>
+  <Navbar />
+  <div class="oa-wrap">
+    <article class="oa-legal">
+      <p class="updated">Última atualização: {COMPANY.atualizacao}</p>
+      <h1 class="oa-serif">Política de Privacidade</h1>
+      <p class="intro">
+        Esta Política descreve como o {COMPANY.nome} trata seus dados pessoais
+        quando você utiliza nosso serviço de emissão de notas fiscais pelo
+        WhatsApp, em conformidade com a Lei nº 13.709/2018 (Lei Geral de
+        Proteção de Dados — LGPD).
+      </p>
+
+      <h2>1. Quem é o controlador dos dados</h2>
+      <p>
+        O controlador dos dados pessoais é <strong>{COMPANY.razaoSocial}</strong>,
+        inscrita no CNPJ sob o nº {COMPANY.cnpj}, com sede em {COMPANY.endereco}.
+        Para qualquer questão sobre privacidade, fale com nosso Encarregado de
+        Proteção de Dados (DPO) pelo e-mail
+        <a href={`mailto:${COMPANY.emailPrivacidade}`}>{COMPANY.emailPrivacidade}</a>.
+      </p>
+
+      <h2>2. Quais dados coletamos</h2>
+      <p>Coletamos apenas o necessário para emitir suas notas e operar o serviço:</p>
+      <ul>
+        <li>
+          <strong>Dados de identificação e contato:</strong> nome, número de
+          telefone/WhatsApp e e-mail.
+        </li>
+        <li>
+          <strong>Dados fiscais e empresariais:</strong> CPF/CNPJ, inscrição
+          municipal/estadual, regime tributário, endereço e atividade.
+        </li>
+        <li>
+          <strong>Dados das notas emitidas:</strong> dados do cliente final
+          (tomador), descrição do produto/serviço, valores e impostos.
+        </li>
+        <li>
+          <strong>Conteúdo das conversas:</strong> as mensagens trocadas com o
+          NotaZap no WhatsApp para concluir cada operação.
+        </li>
+        <li>
+          <strong>Dados técnicos:</strong> registros de acesso, data e hora de
+          uso e identificadores necessários à segurança e à prevenção a fraudes.
+        </li>
+      </ul>
+
+      <h2>3. Para que usamos seus dados (finalidades)</h2>
+      <ul>
+        <li>Emitir, cancelar e armazenar suas notas fiscais (NF-e e NFS-e);</li>
+        <li>Calcular impostos e transmitir as informações às prefeituras e órgãos competentes;</li>
+        <li>Prestar suporte e atendimento pelo WhatsApp;</li>
+        <li>Gerenciar sua assinatura e cobranças;</li>
+        <li>Cumprir obrigações legais, fiscais e regulatórias;</li>
+        <li>Prevenir fraudes e garantir a segurança do serviço.</li>
+      </ul>
+
+      <h2>4. Bases legais</h2>
+      <p>
+        Tratamos seus dados com fundamento na execução de contrato, no
+        cumprimento de obrigação legal e regulatória (especialmente a legislação
+        fiscal), no legítimo interesse para segurança e melhoria do serviço e,
+        quando aplicável, no seu consentimento.
+      </p>
+
+      <h2>5. Compartilhamento de dados</h2>
+      <p>Seus dados podem ser compartilhados, na medida do necessário, com:</p>
+      <ul>
+        <li>
+          <strong>Órgãos públicos:</strong> prefeituras, Secretarias da Fazenda e
+          demais autoridades fiscais, para a emissão e validade das notas;
+        </li>
+        <li>
+          <strong>Provedores de tecnologia:</strong> serviços de hospedagem,
+          processamento de pagamentos e a plataforma de mensageria (WhatsApp /
+          Meta Platforms), que viabiliza a conversa;
+        </li>
+        <li>
+          <strong>Escritórios contábeis parceiros:</strong> quando você é cliente
+          por meio de um contador parceiro (modelo B2B2C), os dados necessários à
+          operação são compartilhados com esse escritório responsável pela sua
+          conta;
+        </li>
+        <li>
+          <strong>Autoridades:</strong> mediante requisição legal ou ordem
+          judicial.
+        </li>
+      </ul>
+      <p>Não vendemos seus dados pessoais a terceiros.</p>
+
+      <h2>6. Uso do WhatsApp</h2>
+      <p>
+        O NotaZap opera sobre o WhatsApp, fornecido pela Meta. Ao conversar com a
+        gente, o tratamento das mensagens nessa plataforma também está sujeito às
+        políticas da Meta. Recomendamos a leitura dos termos e da política de
+        privacidade do WhatsApp.
+      </p>
+
+      <h2>7. Por quanto tempo guardamos</h2>
+      <p>
+        Mantemos os dados pelo tempo necessário às finalidades acima e ao
+        cumprimento de obrigações legais. Documentos e informações fiscais são
+        retidos pelos prazos exigidos pela legislação tributária, ainda que você
+        encerre o uso do serviço.
+      </p>
+
+      <h2>8. Seus direitos como titular</h2>
+      <p>Nos termos da LGPD, você pode, a qualquer momento:</p>
+      <ul>
+        <li>Confirmar a existência de tratamento e acessar seus dados;</li>
+        <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+        <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+        <li>Solicitar a portabilidade dos dados;</li>
+        <li>Revogar o consentimento, quando essa for a base legal;</li>
+        <li>Obter informação sobre com quem compartilhamos seus dados.</li>
+      </ul>
+      <p>
+        Para exercer seus direitos, escreva para
+        <a href={`mailto:${COMPANY.emailPrivacidade}`}>{COMPANY.emailPrivacidade}</a>.
+      </p>
+
+      <h2>9. Segurança</h2>
+      <p>
+        Adotamos medidas técnicas e organizacionais para proteger seus dados
+        contra acessos não autorizados, perda ou alteração. Nenhum sistema é
+        totalmente infalível, mas trabalhamos continuamente para mitigar riscos.
+      </p>
+
+      <h2>10. Alterações desta Política</h2>
+      <p>
+        Podemos atualizar esta Política periodicamente. A data da última revisão
+        é indicada no topo. Mudanças relevantes serão comunicadas pelos nossos
+        canais.
+      </p>
+
+      <h2>11. Contato</h2>
+      <p>
+        Dúvidas sobre privacidade e proteção de dados:
+        <a href={`mailto:${COMPANY.emailPrivacidade}`}>{COMPANY.emailPrivacidade}</a>.
+        Para assuntos gerais:
+        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+      </p>
+
+      <hr />
+      <a class="back" href="/">← Voltar para o início</a>
+    </article>
+  </div>
+  <Footer />
+</Layout>
