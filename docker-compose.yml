@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     ports:
       # host:container — ajuste a porta do host conforme necessário
-      - "8080:80"
+      - "4321:80"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
       interval: 30s
