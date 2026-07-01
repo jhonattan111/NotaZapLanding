@@ -1,0 +1,210 @@
+---
+import { CLIENT_PLANS } from '../data/clientPlans';
+import { WHATSAPP_LINK } from '../config';
+
+const brl = (n: number) => n.toFixed(2).replace('.', ',');
+const desconto = (original: number, promo: number) =>
+  Math.round((1 - promo / original) * 100);
+---
+
+<section class="oa-sec" id="planos">
+  <div class="oa-kicker">[ planos ]</div>
+  <h2 class="oa-h2 oa-serif">Um plano do tamanho do seu negócio.</h2>
+  <p class="oa-lead">
+    Preço de lançamento por tempo limitado. Sem fidelidade, sem letra
+    miúda — troque ou cancele quando quiser pelo próprio WhatsApp.
+  </p>
+
+  <div class="plans-grid">
+    {
+      CLIENT_PLANS.map((p) => (
+        <div class:list={['plan-card', { featured: p.destaque }]}>
+          {p.destaque && <span class="plan-tag">Mais escolhido</span>}
+          <div class="plan-name">{p.name}</div>
+          <div class="plan-notas">{p.notas} notas fiscais/mês</div>
+
+          <div class="plan-price">
+            <span class="old">R$ {brl(p.valorOriginal)}</span>
+            <span class="save">-{desconto(p.valorOriginal, p.valorPromocional)}%</span>
+          </div>
+          <div class="plan-price-now">
+            <span class="cur">R$</span>
+            <span class="val">{brl(p.valorPromocional)}</span>
+            <span class="unit">/mês</span>
+          </div>
+
+          <a class="plan-cta" href={WHATSAPP_LINK} target="_blank" rel="noopener">
+            Assinar {p.name}
+          </a>
+
+          <div class="plan-annual">
+            <strong>R$ {brl(p.valorAnual)}</strong> no plano anual
+            <small>equivale a R$ {brl(p.valorAnual / 12)}/mês</small>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="par-note">
+    Valores promocionais de lançamento para assinatura mensal recorrente. O
+    plano anual é cobrado uma vez por ano, em até 12x no cartão.
+  </p>
+</section>
+
+<style>
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+  .plan-card {
+    position: relative;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .plan-card:hover {
+    border-color: var(--acc-line);
+    transform: translateY(-3px);
+  }
+  .plan-card.featured {
+    background: var(--surface);
+    border: 2px solid var(--acc);
+    box-shadow: 6px 6px 0 var(--acc);
+  }
+  .plan-tag {
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background: var(--acc);
+    color: var(--acc-ink);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .plan-name {
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .plan-notas {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+    margin-bottom: 20px;
+  }
+  .plan-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .plan-price .old {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--muted);
+  }
+  .plan-price .save {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--amber-ink);
+    background: var(--amber-soft);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .plan-price-now {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    margin: 4px 0 22px;
+  }
+  .plan-price-now .cur {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--acc);
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+  .plan-price-now .val {
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--acc);
+  }
+  .plan-price-now .unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .plan-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--acc);
+    color: var(--acc-ink);
+    font-size: 14.5px;
+    font-weight: 800;
+    padding: 13px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .plan-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 22px -4px rgba(20, 199, 93, 0.8);
+  }
+  .plan-annual {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .plan-annual strong {
+    color: var(--ink);
+    font-weight: 800;
+  }
+  .plan-annual small {
+    display: block;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    color: var(--acc);
+    margin-top: 3px;
+  }
+
+  @media (max-width: 920px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+    .plan-card.featured {
+      box-shadow: 4px 4px 0 var(--acc);
+    }
+  }
+</style>

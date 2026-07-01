@@ -30,6 +30,7 @@ const ogImage = new URL('/assets/logo-horizontal.png', Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/assets/mark-green.png" />
 
     <!-- Open Graph -->
@@ -47,11 +48,11 @@ const ogImage = new URL('/assets/logo-horizontal.png', Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Fonts: Instrument Serif (display) + Hanken Grotesk (corpo) -->
+    <!-- Fonts: Hanken Grotesk (display pesado + corpo) + JetBrains Mono (rótulos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -68,6 +69,7 @@ const ogImage = new URL('/assets/logo-horizontal.png', Astro.site);
   }
   body {
     margin: 0;
+    background: #0b0f0d;
   }
   @media (prefers-reduced-motion: reduce) {
     html {

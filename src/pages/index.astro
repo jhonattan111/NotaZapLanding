@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Benefits from '../components/Benefits.astro';
+import Pricing from '../components/Pricing.astro';
 import Testimonial from '../components/Testimonial.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -11,9 +13,11 @@ import Footer from '../components/Footer.astro';
 <Layout>
   <Navbar />
   <Hero />
+  <Marquee />
   <div class="oa-wrap">
     <HowItWorks />
     <Benefits />
+    <Pricing />
     <Testimonial />
   </div>
   <Footer />

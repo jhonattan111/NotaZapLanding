@@ -1,0 +1,26 @@
+---
+// Faixa animada (marquee) — energia "internet native" entre o hero e o conteúdo.
+// Puramente decorativa; os itens são duplicados para o loop contínuo.
+const items = [
+  'NF-e',
+  'NFS-e',
+  'sem sistema',
+  'sem login',
+  'só no zap',
+  '1 minuto',
+  'sempre na lei',
+];
+---
+
+<div class="oa-marquee" aria-hidden="true">
+  <div class="oa-marquee-track">
+    {
+      [...items, ...items].map((t) => (
+        <>
+          <span>{t}</span>
+          <span class="sep">✦</span>
+        </>
+      ))
+    }
+  </div>
+</div>
