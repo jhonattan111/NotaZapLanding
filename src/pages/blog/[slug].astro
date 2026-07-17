@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import { WHATSAPP_LINK } from '../../config';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<Layout title={`${post.data.title} — Blog NotaZap`} description={post.data.description}>
+  <Navbar />
+  <div class="oa-wrap">
+    <article class="oa-sec blog-post" style="border-top:none;">
+      <a class="blog-back" href="/blog">← Voltar pro blog</a>
+      <span class="blog-date">{fmt(post.data.pubDate)}</span>
+      <h1 class="oa-serif">{post.data.title}</h1>
+      <div class="blog-prose">
+        <Content />
+      </div>
+      <a class="oa-btn-primary" href={WHATSAPP_LINK} target="_blank" rel="noopener">
+        <Icon name="bubble" size={15} /> Emitir minha primeira nota
+      </a>
+    </article>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 720px;
+  }
+  .blog-back {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+  .blog-back:hover {
+    color: var(--acc);
+  }
+  .blog-date {
+    display: block;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--acc);
+    margin-bottom: 14px;
+  }
+  .blog-post h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 34px;
+  }
+  .blog-prose {
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .blog-prose :global(h2) {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin: 40px 0 14px;
+  }
+  .blog-prose :global(p) {
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+  .blog-prose :global(ul),
+  .blog-prose :global(ol) {
+    margin: 0 0 18px;
+    padding-left: 22px;
+    color: var(--muted);
+  }
+  .blog-prose :global(li) {
+    margin-bottom: 8px;
+  }
+  .blog-prose :global(strong) {
+    color: var(--ink);
+  }
+  .blog-post .oa-btn-primary {
+    margin-top: 30px;
+  }
+</style>

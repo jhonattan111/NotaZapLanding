@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<Layout
+  title="Blog — NotaZap"
+  description="Nota fiscal, MEI e WhatsApp sem juridiquês: dicas práticas pra manter sua emissão fiscal em dia."
+>
+  <Navbar />
+  <div class="oa-wrap">
+    <section class="oa-sec" style="border-top:none;">
+      <div class="oa-kicker">[ blog ]</div>
+      <h1 class="oa-h2 oa-serif">Nota fiscal sem juridiquês.</h1>
+      <p class="oa-lead">
+        Dicas práticas sobre MEI, nota fiscal e obrigações do dia a dia — direto ao ponto, sem
+        enrolação.
+      </p>
+
+      <div class="blog-grid">
+        {
+          posts.map((post) => (
+            <a class="blog-card" href={`/blog/${post.id}`}>
+              <span class="blog-date">{fmt(post.data.pubDate)}</span>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <span class="blog-readmore">Ler mais →</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 26px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .blog-card:hover {
+    border-color: var(--acc-line);
+    transform: translateY(-3px);
+  }
+  .blog-date {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .blog-card h2 {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+    line-height: 1.25;
+  }
+  .blog-card p {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0 0 18px;
+    flex: 1;
+  }
+  .blog-readmore {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--acc);
+  }
+
+  @media (max-width: 760px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

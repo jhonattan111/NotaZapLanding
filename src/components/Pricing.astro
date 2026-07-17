@@ -5,6 +5,7 @@ import { WHATSAPP_LINK } from '../config';
 const brl = (n: number) => n.toFixed(2).replace('.', ',');
 const desconto = (original: number, promo: number) =>
   Math.round((1 - promo / original) * 100);
+const porNota = (promo: number, notas: number) => brl(promo / notas);
 ---
 
 <section class="oa-sec" id="planos">
@@ -32,6 +33,7 @@ const desconto = (original: number, promo: number) =>
             <span class="val">{brl(p.valorPromocional)}</span>
             <span class="unit">/mês</span>
           </div>
+          <div class="plan-per-note">R$ {porNota(p.valorPromocional, p.notas)} por nota</div>
 
           <a class="plan-cta" href={WHATSAPP_LINK} target="_blank" rel="noopener">
             Assinar {p.name}
@@ -134,7 +136,13 @@ const desconto = (original: number, promo: number) =>
     display: flex;
     align-items: baseline;
     gap: 3px;
-    margin: 4px 0 22px;
+    margin: 4px 0 4px;
+  }
+  .plan-per-note {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--amber-ink);
+    margin-bottom: 22px;
   }
   .plan-price-now .cur {
     font-size: 17px;

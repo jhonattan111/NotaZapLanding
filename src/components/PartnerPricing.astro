@@ -39,24 +39,24 @@ import { partnerWhatsappLink } from '../config';
         <tr>
           <th class="rowlabel" scope="row">Mensalidade NotaZap</th>
           {
-            PARTNER_PLANS.map(() => (
+            PARTNER_PLANS.map((p) => (
               <td>
-                <span class="par-price">R$ ###<span>/mês</span></span>
+                <span class="par-price">R$ {p.mensalidade}<span>/mês</span></span>
               </td>
             ))
           }
         </tr>
         <tr class="row-cost">
           <th class="rowlabel" scope="row">Custo por cliente/mês</th>
-          {PARTNER_PLANS.map(() => <td>R$ ###</td>)}
+          {PARTNER_PLANS.map((p) => <td>R$ {p.custoCliente}</td>)}
         </tr>
         <tr class="row-resale">
           <th class="rowlabel" scope="row">Preço mínimo de revenda</th>
-          {PARTNER_PLANS.map(() => <td>R$ ###</td>)}
+          {PARTNER_PLANS.map((p) => <td>R$ {p.revenda}</td>)}
         </tr>
         <tr class="row-margin">
           <th class="rowlabel" scope="row">Margem bruta mínima por cliente</th>
-          {PARTNER_PLANS.map(() => <td>R$ ###</td>)}
+          {PARTNER_PLANS.map((p) => <td>R$ {p.margem}</td>)}
         </tr>
         <tr>
           <td class="rowlabel"></td>
@@ -75,7 +75,7 @@ import { partnerWhatsappLink } from '../config';
   </div>
 
   <p class="par-note">
-    A margem é bruta e mínima: você pode cobrar acima de R$ ###/mês e ampliar o
+    A margem é bruta e mínima: você pode cobrar acima de R$ {PARTNER_PLANS[0].revenda}/mês e ampliar o
     ganho por cliente. <br />
     * No pacote Master (ilimitado), o custo por cliente cai conforme você ativa
     mais clientes — valores estimados para ~120 clientes ativos.

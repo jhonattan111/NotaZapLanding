@@ -1,6 +1,17 @@
 ---
 import Icon from './Icon.astro';
 import { partnerWhatsappLink } from '../config';
+import { PARTNER_PLANS } from '../data/partnerPlans';
+
+// Card de exemplo usa o pacote Pro na capacidade cheia (70 clientes).
+const pro = PARTNER_PLANS.find((p) => p.key === 'pro')!;
+const clientesCheios = parseInt(pro.clientes.replace(/\D/g, ''), 10);
+const revendaNum = parseFloat(pro.revenda.replace(',', '.'));
+const mensalidadeNum = parseFloat(pro.mensalidade.replace(',', '.'));
+const receitaTotal = clientesCheios * revendaNum;
+const margemTotal = receitaTotal - mensalidadeNum;
+const brl = (n: number) =>
+  n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
 
 <div class="oa-wrap">
@@ -34,17 +45,17 @@ import { partnerWhatsappLink } from '../config';
     <div class="par-card">
       <div class="tag">Exemplo · Pacote Pro</div>
       <div class="par-line">
-        70 clientes × R$ ###<span class="v">R$ ###/mês</span>
+        {clientesCheios} clientes × R$ {pro.revenda}<span class="v">R$ {brl(receitaTotal)}/mês</span>
       </div>
       <div class="par-line">
-        Mensalidade NotaZap<span class="v">− R$ ###</span>
+        Mensalidade NotaZap<span class="v">− R$ {pro.mensalidade}</span>
       </div>
       <div class="par-line total">
-        Sua margem<span class="v">R$ ###/mês</span>
+        Sua margem<span class="v">R$ {brl(margemTotal)}/mês</span>
       </div>
       <p class="foot">
         Receita de revenda com a carteira cheia, menos o custo fixo do pacote.
-        Você pode cobrar acima de R$ ### e ampliar a margem.
+        Você pode cobrar acima de R$ {pro.revenda} e ampliar a margem.
       </p>
     </div>
   </section>
