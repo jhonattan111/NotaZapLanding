@@ -1,0 +1,44 @@
+{
+  "plans": [
+    {
+      "key": "starter",
+      "name": "Starter",
+      "clientes": "Até 10",
+      "mensalidade": "149,90",
+      "custoCliente": "14,99",
+      "revenda": "29,90",
+      "margem": "14,91",
+      "phone": "5522992164166"
+    },
+    {
+      "key": "growth",
+      "name": "Growth",
+      "clientes": "Até 30",
+      "mensalidade": "349,90",
+      "custoCliente": "11,66",
+      "revenda": "29,90",
+      "margem": "18,24",
+      "phone": "5522992164166"
+    },
+    {
+      "key": "pro",
+      "name": "Pro",
+      "clientes": "Até 70",
+      "mensalidade": "649,90",
+      "custoCliente": "9,28",
+      "revenda": "29,90",
+      "margem": "20,62",
+      "phone": "5522992164166"
+    },
+    {
+      "key": "master",
+      "name": "Master",
+      "clientes": "Ilimitado",
+      "mensalidade": "999,90",
+      "custoCliente": "< 8,33*",
+      "revenda": "29,90",
+      "margem": "> 21,57",
+      "phone": "5522999612008"
+    }
+  ]
+}

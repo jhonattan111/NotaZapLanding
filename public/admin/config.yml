@@ -1,0 +1,88 @@
+backend:
+  name: github
+  repo: jhonattan111/NotaZapLanding
+  branch: master
+  # Precisa de um proxy de OAuth do GitHub (site não roda em Netlify).
+  # Ver instruções em public/admin/README.md antes de usar em produção.
+  base_url: https://SUBSTITUIR-PELA-URL-DO-PROXY-OAUTH
+
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descrição (aparece na listagem e no Google)", name: "description", widget: "text" }
+      - { label: "Data de publicação", name: "pubDate", widget: "datetime" }
+      - { label: "Última atualização", name: "updatedDate", widget: "datetime", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        default: []
+      - { label: "Conteúdo", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Configurações do site"
+    files:
+      - name: "geral"
+        label: "WhatsApp e e-mail"
+        file: "src/data/settings.json"
+        fields:
+          - label: "Número do WhatsApp"
+            name: "whatsappNumber"
+            widget: "string"
+            hint: "Formato internacional, só dígitos. Ex.: 5522997303889"
+          - label: "Mensagem pré-preenchida do WhatsApp"
+            name: "whatsappText"
+            widget: "string"
+          - { label: "E-mail de contato geral", name: "companyEmail", widget: "string" }
+          - { label: "E-mail de privacidade (LGPD/DPO)", name: "privacyEmail", widget: "string" }
+
+  - name: "planos-cliente"
+    label: "Planos — cliente final"
+    files:
+      - name: "clientPlans"
+        label: "Planos (Start, Essencial, Profissional, Business)"
+        file: "src/data/clientPlans.json"
+        fields:
+          - label: "Planos"
+            name: "plans"
+            widget: "list"
+            summary: "{{name}} — R$ {{valorPromocional}}/mês"
+            fields:
+              - { label: "Chave interna (não mostrar ao cliente)", name: "key", widget: "string" }
+              - { label: "Nome do plano", name: "name", widget: "string" }
+              - { label: "Notas fiscais incluídas por mês", name: "notas", widget: "number", value_type: "int" }
+              - { label: "Preço cheio (R$, antes do desconto)", name: "valorOriginal", widget: "number", value_type: "float" }
+              - { label: "Preço promocional atual (R$/mês)", name: "valorPromocional", widget: "number", value_type: "float" }
+              - { label: "Preço anual (R$, cobrado 1x/ano)", name: "valorAnual", widget: "number", value_type: "float" }
+              - { label: "Destacar como 'Mais escolhido'?", name: "destaque", widget: "boolean", default: false }
+
+  - name: "planos-parceiros"
+    label: "Planos — Programa de Parceiros"
+    files:
+      - name: "partnerPlans"
+        label: "Pacotes (Starter, Growth, Pro, Master)"
+        file: "src/data/partnerPlans.json"
+        fields:
+          - label: "Pacotes"
+            name: "plans"
+            widget: "list"
+            summary: "{{name}} — R$ {{mensalidade}}/mês"
+            fields:
+              - { label: "Chave interna (não mostrar ao cliente)", name: "key", widget: "string" }
+              - { label: "Nome do pacote", name: "name", widget: "string" }
+              - { label: "Clientes incluídos (texto, ex.: 'Até 70')", name: "clientes", widget: "string" }
+              - { label: "Mensalidade NotaZap (R$, só número em texto)", name: "mensalidade", widget: "string" }
+              - { label: "Custo por cliente/mês (R$, texto)", name: "custoCliente", widget: "string" }
+              - { label: "Preço mínimo de revenda (R$, texto)", name: "revenda", widget: "string" }
+              - { label: "Margem bruta mínima por cliente (R$, texto)", name: "margem", widget: "string" }
+              - { label: "WhatsApp deste pacote (DDI+DDD+número, só dígitos)", name: "phone", widget: "string" }

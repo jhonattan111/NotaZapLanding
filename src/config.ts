@@ -1,11 +1,14 @@
-// Configuração central da landing — placeholders a confirmar antes do lançamento.
-// Veja "Conteúdo a confirmar" no README.
+// Configuração central da landing.
+// WhatsApp/e-mail vêm de `settings.json` (editável em /admin); o resto deste
+// arquivo é lógica/derivação, não precisa mudar quando esses dados mudarem.
+
+import settings from './data/settings.json';
 
 /** Número do WhatsApp (formato internacional, só dígitos). Ex.: 5581999999999. */
-export const WHATSAPP_NUMBER = '5522997303889';
+export const WHATSAPP_NUMBER = settings.whatsappNumber;
 
 /** Mensagem pré-preenchida ao abrir a conversa (CTA do cliente final). */
-export const WHATSAPP_TEXT = 'oi';
+export const WHATSAPP_TEXT = settings.whatsappText;
 
 /** Link wa.me usado nos CTAs do cliente final (B2C). */
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -40,9 +43,9 @@ export const COMPANY = {
   /** Endereço da sede. */
   endereco: 'R ANTONIO LOPES SERTA 185 ANDAR 1 SALA',
   /** E-mail de contato geral. */
-  email: 'contato@notazap.com.br',
+  email: settings.companyEmail,
   /** Canal do Encarregado de Dados (DPO), conforme LGPD. */
-  emailPrivacidade: 'privacidade@notazap.com.br',
+  emailPrivacidade: settings.privacyEmail,
   /** Comarca/foro eleito para os Termos de Uso. */
   foro: 'Nova Friburgo/RJ',
   /** Data da última atualização dos documentos legais. */

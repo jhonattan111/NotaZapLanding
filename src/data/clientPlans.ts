@@ -1,6 +1,9 @@
 // Planos do cliente final (B2C) — emissão de notas fiscais pelo WhatsApp.
-// Preço mensal promocional é o de lançamento; o plano anual é cobrado à
-// vista uma vez por ano e sai mais barato que 12x o mensal promocional.
+// Os valores em si vivem em `clientPlans.json` (editável pelo painel admin em
+// /admin, ver public/admin/config.yml). Este arquivo só define o tipo e
+// reexporta os dados já tipados — nada aqui precisa mudar quando o preço mudar.
+
+import raw from './clientPlans.json';
 
 export interface ClientPlan {
   key: string;
@@ -18,38 +21,4 @@ export interface ClientPlan {
   destaque?: boolean;
 }
 
-export const CLIENT_PLANS: ClientPlan[] = [
-  {
-    key: 'start',
-    name: 'Start',
-    notas: 5,
-    valorOriginal: 29.9,
-    valorPromocional: 9.9,
-    valorAnual: 89.9,
-  },
-  {
-    key: 'essencial',
-    name: 'Essencial',
-    notas: 15,
-    valorOriginal: 39.9,
-    valorPromocional: 12.9,
-    valorAnual: 109.9,
-    destaque: true,
-  },
-  {
-    key: 'profissional',
-    name: 'Profissional',
-    notas: 50,
-    valorOriginal: 59.9,
-    valorPromocional: 19.9,
-    valorAnual: 169.9,
-  },
-  {
-    key: 'business',
-    name: 'Business',
-    notas: 100,
-    valorOriginal: 89.9,
-    valorPromocional: 29.9,
-    valorAnual: 249.9,
-  },
-];
+export const CLIENT_PLANS: ClientPlan[] = raw.plans as ClientPlan[];

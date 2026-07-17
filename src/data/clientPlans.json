@@ -1,0 +1,40 @@
+{
+  "plans": [
+    {
+      "key": "start",
+      "name": "Start",
+      "notas": 5,
+      "valorOriginal": 29.9,
+      "valorPromocional": 9.9,
+      "valorAnual": 89.9,
+      "destaque": false
+    },
+    {
+      "key": "essencial",
+      "name": "Essencial",
+      "notas": 15,
+      "valorOriginal": 39.9,
+      "valorPromocional": 12.9,
+      "valorAnual": 109.9,
+      "destaque": true
+    },
+    {
+      "key": "profissional",
+      "name": "Profissional",
+      "notas": 50,
+      "valorOriginal": 59.9,
+      "valorPromocional": 19.9,
+      "valorAnual": 169.9,
+      "destaque": false
+    },
+    {
+      "key": "business",
+      "name": "Business",
+      "notas": 100,
+      "valorOriginal": 89.9,
+      "valorPromocional": 29.9,
+      "valorAnual": 249.9,
+      "destaque": false
+    }
+  ]
+}
