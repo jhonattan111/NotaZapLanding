@@ -1,0 +1,52 @@
+name: Deploy
+
+# Publica a landing no GitHub Pages a cada push no master.
+# Isso inclui os commits feitos pelo painel /admin (Sveltia CMS grava direto no master),
+# então editar preço/blog/WhatsApp pelo painel já sobe o site sozinho.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: # permite disparar manualmente pela aba Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Se dois commits entrarem juntos, deixa o último terminar em vez de cancelar no meio.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm na versão pinada em package.json (campo packageManager)
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # PREVIEW_BASE fica vazio de propósito: em produção o site serve na raiz do domínio.
+      - run: pnpm build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
