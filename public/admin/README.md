@@ -12,12 +12,27 @@ Cada edição salva vira um **commit direto no GitHub**, na branch configurada e
 `public/admin/config.yml` (`backend.branch`). O site continua estático — depois de cada
 edição ainda é preciso rodar `pnpm build` e publicar de novo (ver seção final).
 
-## O que falta pra funcionar (1 pessoa com acesso ao GitHub precisa fazer isso 1x)
+## Como logar (método atual: Personal Access Token)
 
-O painel só consegue commitar no repositório depois de um login autenticado via GitHub.
-Como o site não está hospedado na Netlify (que resolveria isso sozinha), é preciso um
-pequeno "proxy" de OAuth. O próprio time do Sveltia CMS mantém um pronto pra usar, roda de
-graça num Cloudflare Worker:
+O painel está configurado para o método de login mais simples do Sveltia CMS, pensado pra
+quando só gente técnica (time Verbo) usa o `/admin` — sem precisar montar nenhum servidor
+extra:
+
+1. Abra `seu-dominio.com/admin`.
+2. Clique em **"Sign In with Token"**.
+3. O próprio painel abre um link do GitHub já com as permissões certas pré-marcadas — gere
+   o token ali e cole de volta no painel.
+4. O token fica salvo só no navegador (local storage). Cada pessoa que for editar gera o
+   seu próprio, uma vez.
+
+Quem gerar o token precisa ter permissão de escrita no repositório `NotaZapLanding`.
+
+## Se um dia o cliente for editar sozinho
+
+O método acima exige que a pessoa saiba gerar um token no GitHub — ok pra equipe técnica,
+mas ruim pra alguém não-técnico (ex.: o cliente NotaZap). Nesse caso, vale trocar para o
+fluxo de **login com botão "Entrar com GitHub"**, que exige um proxy de OAuth próprio
+(porque o site não está na Netlify, que resolveria isso sozinha):
 
 **1. Crie um GitHub OAuth App**
    - Acesse `github.com/settings/developers` → **New OAuth App**.
@@ -33,12 +48,11 @@ graça num Cloudflare Worker:
    - Publique (`npx wrangler deploy` ou pelo painel da Cloudflare).
 
 **3. Aponte o CMS pro proxy**
-   - Em `public/admin/config.yml`, troque `base_url` pela URL do Worker publicado
-     (ex.: `https://notazap-cms-auth.seuusuario.workers.dev`).
+   - Em `public/admin/config.yml`, adicione `base_url` apontando pro Worker publicado
+     (ex.: `https://notazap-cms-auth.seuusuario.workers.dev`) dentro de `backend`.
    - Commit + build + publique o site.
 
-Depois disso, `seu-dominio.com/admin` já loga com uma conta GitHub que tenha acesso de
-escrita no repositório.
+Depois disso, `seu-dominio.com/admin` loga com o botão do GitHub, sem token manual.
 
 ## Sobre o rebuild
 

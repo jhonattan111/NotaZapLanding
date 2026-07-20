@@ -2,9 +2,10 @@ backend:
   name: github
   repo: jhonattan111/NotaZapLanding
   branch: master
-  # Precisa de um proxy de OAuth do GitHub (site não roda em Netlify).
-  # Ver instruções em public/admin/README.md antes de usar em produção.
-  base_url: https://SUBSTITUIR-PELA-URL-DO-PROXY-OAUTH
+  # Login via Personal Access Token do GitHub (botão "Sign In with Token" em /admin).
+  # Só faz sentido enquanto o painel é usado por gente técnica da Verbo.
+  # Se algum dia o cliente for editar sozinho, aí sim vale montar o proxy OAuth
+  # (ver public/admin/README.md).
 
 media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
