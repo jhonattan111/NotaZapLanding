@@ -8,6 +8,8 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
+const base = import.meta.env.BASE_URL;
+
 const fmt = (d: Date) =>
   d.toLocaleDateString('pt-BR', {
     day: '2-digit',
@@ -34,7 +36,7 @@ const fmt = (d: Date) =>
       <div class="blog-grid">
         {
           posts.map((post) => (
-            <a class="blog-card" href={`/blog/${post.id}`}>
+            <a class="blog-card" href={`${base}blog/${post.id}`}>
               <span class="blog-date">{fmt(post.data.pubDate)}</span>
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
