@@ -1,16 +1,18 @@
 ---
 import Icon from './Icon.astro';
 import { WHATSAPP_LINK } from '../config';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <nav class="oa-nav">
-  <a href="/" aria-label="NotaZap — início">
-    <img class="oa-brand" src="/assets/logo-dark.png" alt="NotaZap" />
+  <a href={base} aria-label="NotaZap — início">
+    <img class="oa-brand" src={`${base}assets/logo-dark.png`} alt="NotaZap" />
   </a>
   <div class="oa-navlinks">
-    <a href="/#como-funciona">Como funciona</a>
-    <a href="/#planos">Preços</a>
-    <a href="/blog">Blog</a>
+    <a href={`${base}#como-funciona`}>Como funciona</a>
+    <a href={`${base}#planos`}>Preços</a>
+    <a href={`${base}blog`}>Blog</a>
     <a class="oa-pill" href={WHATSAPP_LINK} target="_blank" rel="noopener">
       <Icon name="bubble" size={13} /> Abrir no Zap
     </a>

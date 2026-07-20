@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { COMPANY } from '../config';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -153,7 +155,7 @@ import { COMPANY } from '../config';
       </p>
 
       <hr />
-      <a class="back" href="/">← Voltar para o início</a>
+      <a class="back" href={base}>← Voltar para o início</a>
     </article>
   </div>
   <Footer />

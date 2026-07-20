@@ -1,13 +1,14 @@
 ---
 // Réplica fiel do WhatsApp-dark do início real da conversa com o NotaZap.
 // Puramente visual (imagem viva), não interativo.
+const base = import.meta.env.BASE_URL;
 ---
 
 <div class="oa-phone" aria-hidden="true">
   <div class="wa-screen">
     <div class="wa-head">
       <span class="wa-av">
-        <img src="/assets/mark-green.png" alt="" />
+        <img src={`${base}assets/mark-green.png`} alt="" />
       </span>
       <div class="wa-meta">
         <div class="wa-name">Nota Zap</div>

@@ -17,6 +17,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const base = import.meta.env.BASE_URL;
+
 const fmt = (d: Date) =>
   d.toLocaleDateString('pt-BR', {
     day: '2-digit',
@@ -30,7 +32,7 @@ const fmt = (d: Date) =>
   <Navbar />
   <div class="oa-wrap">
     <article class="oa-sec blog-post" style="border-top:none;">
-      <a class="blog-back" href="/blog">← Voltar pro blog</a>
+      <a class="blog-back" href={`${base}blog`}>← Voltar pro blog</a>
       <span class="blog-date">{fmt(post.data.pubDate)}</span>
       <h1 class="oa-serif">{post.data.title}</h1>
       <div class="blog-prose">

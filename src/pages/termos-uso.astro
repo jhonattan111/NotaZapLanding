@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { COMPANY } from '../config';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -25,7 +27,7 @@ import { COMPANY } from '../config';
       <p>
         Ao iniciar uma conversa com o {COMPANY.nome} e/ou contratar um plano, você
         declara ter lido e aceito estes Termos e a nossa
-        <a href="/politica-privacidade/">Política de Privacidade</a>. Se não
+        <a href={`${base}politica-privacidade/`}>Política de Privacidade</a>. Se não
         concordar, não utilize o serviço.
       </p>
 
@@ -123,7 +125,7 @@ import { COMPANY } from '../config';
       </p>
 
       <hr />
-      <a class="back" href="/">← Voltar para o início</a>
+      <a class="back" href={base}>← Voltar para o início</a>
     </article>
   </div>
   <Footer />
