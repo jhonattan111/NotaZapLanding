@@ -1105,6 +1105,36 @@
   }
 }
 
+/* ===================== botão flutuante whatsapp ===================== */
+.oa-wa-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--acc);
+  color: var(--acc-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px -6px rgba(20, 199, 93, 0.55);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.oa-wa-float:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 34px -4px rgba(20, 199, 93, 0.75);
+}
+@media (max-width: 560px) {
+  .oa-wa-float {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+  }
+}
+
 /* respeito a quem prefere menos movimento */
 @media (prefers-reduced-motion: reduce) {
   .oa-root * {
