@@ -67,6 +67,31 @@ collections:
               - { label: "Preço anual (R$, cobrado 1x/ano)", name: "valorAnual", widget: "number", value_type: "float" }
               - { label: "Destacar como 'Mais escolhido'?", name: "destaque", widget: "boolean", default: false }
 
+          - label: "Adicional opcional (certificado digital)"
+            name: "addon"
+            widget: "object"
+            fields:
+              - { label: "Nome do adicional", name: "nome", widget: "string" }
+              - label: "Preço cheio (R$, do período completo)"
+                name: "valorOriginal"
+                widget: "number"
+                value_type: "float"
+                hint: "Valor sem desconto, aparece riscado. Ex.: 199 para um certificado anual."
+              - label: "Preço promocional (R$, do período completo)"
+                name: "valorPromocional"
+                widget: "number"
+                value_type: "float"
+                hint: "É esse valor que entra na conta da mensalidade. Ex.: 120."
+              - label: "Diluir em quantos meses"
+                name: "meses"
+                widget: "number"
+                value_type: "int"
+                default: 12
+                hint: "O valor dividido por esse número é somado à mensalidade de cada plano. 12 = certificado anual."
+              - { label: "Descrição", name: "descricao", widget: "text" }
+              - { label: "Observação (quando o certificado está no preço)", name: "nota", widget: "text" }
+              - { label: "Observação (quando o cliente já tem certificado)", name: "notaProprioCert", widget: "text" }
+
   - name: "planos-parceiros"
     label: "Planos — Programa de Parceiros"
     files:

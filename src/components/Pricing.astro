@@ -1,20 +1,50 @@
 ---
-import { CLIENT_PLANS } from '../data/clientPlans';
+import {
+  CLIENT_PLANS,
+  CLIENT_ADDON,
+  ADDON_MENSAL,
+  ADDON_MENSAL_ORIGINAL,
+} from '../data/clientPlans';
 import { WHATSAPP_LINK } from '../config';
 
 const brl = (n: number) => n.toFixed(2).replace('.', ',');
 const desconto = (original: number, promo: number) =>
   Math.round((1 - promo / original) * 100);
-const porNota = (promo: number, notas: number) => brl(promo / notas);
+const porNota = (valor: number, notas: number) => brl(valor / notas);
+
+// Por padrão os cards anunciam o valor final: mensalidade do plano + a parcela
+// mensal do certificado digital. Quem já tem um certificado A1 marca o switch e
+// a seção troca para os valores do plano puro — os dois conjuntos de números são
+// renderizados no HTML e o CSS decide qual aparece, então não há cálculo no
+// cliente nem preço que "pisca" ao carregar.
+const comCert = (mensal: number) => mensal + ADDON_MENSAL;
+// O riscado soma a parcela do certificado pelo preço cheio dele (R$ 199/ano),
+// então o percentual mostrado é o desconto real do pacote plano + certificado.
+const comCertCheio = (mensal: number) => mensal + ADDON_MENSAL_ORIGINAL;
 ---
 
 <section class="oa-sec" id="planos">
   <div class="oa-kicker">[ planos ]</div>
   <h2 class="oa-h2 oa-serif">Um plano do tamanho do seu negócio.</h2>
   <p class="oa-lead">
-    Preço de lançamento por tempo limitado. Sem fidelidade, sem letra
-    miúda — troque ou cancele quando quiser pelo próprio WhatsApp.
+    Preço de lançamento por tempo limitado<span class="c-on">, já com o
+    certificado digital incluso</span>. Sem fidelidade, sem letra miúda —
+    troque ou cancele quando quiser pelo próprio WhatsApp.
   </p>
+
+  <div class="cert-toggle">
+    <label class="switch">
+      <input type="checkbox" id="cert-owned" />
+      <span class="track"><span class="knob" /></span>
+      <span class="switch-label">Já tenho certificado digital</span>
+    </label>
+    <span class="switch-hint">
+      <span class="c-on">
+        os preços incluem R$ {brl(ADDON_MENSAL)}/mês do certificado
+      </span>
+      <span class="c-off">mostrando só o valor do plano</span>
+    </span>
+  </div>
 
   <div class="plans-grid">
     {
@@ -25,36 +55,180 @@ const porNota = (promo: number, notas: number) => brl(promo / notas);
           <div class="plan-notas">{p.notas} notas fiscais/mês</div>
 
           <div class="plan-price">
-            <span class="old">R$ {brl(p.valorOriginal)}</span>
-            <span class="save">-{desconto(p.valorOriginal, p.valorPromocional)}%</span>
+            <span class="old">R$ <span class="c-on">{brl(comCertCheio(p.valorOriginal))}</span><span class="c-off">{brl(p.valorOriginal)}</span></span>
+            <span class="save">-<span class="c-on">{desconto(comCertCheio(p.valorOriginal), comCert(p.valorPromocional))}</span><span class="c-off">{desconto(p.valorOriginal, p.valorPromocional)}</span>%</span>
           </div>
           <div class="plan-price-now">
             <span class="cur">R$</span>
-            <span class="val">{brl(p.valorPromocional)}</span>
+            <span class="val"><span class="c-on">{brl(comCert(p.valorPromocional))}</span><span class="c-off">{brl(p.valorPromocional)}</span></span>
             <span class="unit">/mês</span>
           </div>
-          <div class="plan-per-note">R$ {porNota(p.valorPromocional, p.notas)} por nota</div>
+
+          <div class="plan-breakdown">
+            <strong>R$ {brl(p.valorPromocional)}</strong> plano
+            <span class="c-on">
+              <span class="plus">+</span> <strong>R$ {brl(ADDON_MENSAL)}</strong> certificado
+            </span>
+            <span class="c-off">
+              <span class="plus">·</span> com o seu certificado A1
+            </span>
+          </div>
+
+          <div class="plan-per-note">
+            R$ <span class="c-on">{porNota(comCert(p.valorPromocional), p.notas)}</span><span class="c-off">{porNota(p.valorPromocional, p.notas)}</span> por nota
+          </div>
 
           <a class="plan-cta" href={WHATSAPP_LINK} target="_blank" rel="noopener">
             Assinar {p.name}
           </a>
 
           <div class="plan-annual">
-            <strong>R$ {brl(p.valorAnual)}</strong> no plano anual
-            <small>equivale a R$ {brl(p.valorAnual / 12)}/mês</small>
+            <strong>R$ <span class="c-on">{brl(p.valorAnual + CLIENT_ADDON.valorPromocional)}</span><span class="c-off">{brl(p.valorAnual)}</span></strong> no plano anual
+            <small>equivale a R$ <span class="c-on">{brl((p.valorAnual + CLIENT_ADDON.valorPromocional) / 12)}</span><span class="c-off">{brl(p.valorAnual / 12)}</span>/mês</small>
           </div>
         </div>
       ))
     }
   </div>
 
+  <div class="addon-card">
+    <div class="addon-body">
+      <div class="addon-head">
+        <span class="addon-tag">Opcional</span>
+        <span class="addon-name">{CLIENT_ADDON.nome}</span>
+      </div>
+      <p class="addon-desc">{CLIENT_ADDON.descricao}</p>
+      <p class="addon-note">
+        <span class="c-on">{CLIENT_ADDON.nota}</span>
+        <span class="c-off">{CLIENT_ADDON.notaProprioCert}</span>
+      </p>
+    </div>
+    <div class="addon-side">
+      <div class="addon-was">
+        <span class="old">R$ {brl(CLIENT_ADDON.valorOriginal)}</span>
+        <span class="save">
+          -{desconto(CLIENT_ADDON.valorOriginal, CLIENT_ADDON.valorPromocional)}%
+        </span>
+      </div>
+      <div class="addon-price">
+        <span class="cur">R$</span>
+        <span class="val">{brl(CLIENT_ADDON.valorPromocional)}</span>
+        <span class="unit">/ano</span>
+      </div>
+      <div class="addon-split">
+        diluído em {CLIENT_ADDON.meses}x de R$ {brl(ADDON_MENSAL)}
+      </div>
+    </div>
+  </div>
+
   <p class="par-note">
-    Valores promocionais de lançamento para assinatura mensal recorrente. O
-    plano anual é cobrado uma vez por ano, em até 12x no cartão.
+    Valores promocionais de lançamento para assinatura mensal recorrente.
+    <span class="c-on">
+      Os preços acima já somam a mensalidade do plano e a parcela do
+      certificado digital.
+    </span>
+    <span class="c-off">
+      Os preços acima são apenas da mensalidade do plano, sem certificado
+      digital.
+    </span>
+    O plano anual é cobrado uma vez por ano, em até 12x no cartão.
   </p>
 </section>
 
+<script>
+  // O switch só troca uma classe na seção; quem esconde/mostra os dois
+  // conjuntos de preço é o CSS.
+  const sec = document.getElementById('planos');
+  const input = document.getElementById('cert-owned');
+  if (sec && input instanceof HTMLInputElement) {
+    const sync = () => sec.classList.toggle('no-cert', input.checked);
+    input.addEventListener('change', sync);
+    // O navegador restaura o estado do checkbox no refresh/voltar.
+    sync();
+  }
+</script>
+
 <style>
+  /* Troca entre "com certificado" (padrão) e "já tenho certificado".
+     Os dois valores vêm no HTML; o switch só liga .no-cert na seção. */
+  .c-off {
+    display: none;
+  }
+  #planos.no-cert .c-on {
+    display: none;
+  }
+  #planos.no-cert .c-off {
+    display: inline;
+  }
+  #planos.no-cert .addon-side {
+    display: none;
+  }
+
+  .cert-toggle {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin: -6px 0 26px;
+  }
+  .switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .track {
+    position: relative;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1.5px solid var(--line);
+    transition: background 0.18s ease, border-color 0.18s ease;
+  }
+  .knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: transform 0.18s ease, background 0.18s ease;
+  }
+  .switch input:checked + .track {
+    background: var(--acc);
+    border-color: var(--acc);
+  }
+  .switch input:checked + .track .knob {
+    transform: translateX(18px);
+    background: var(--acc-ink);
+  }
+  .switch input:focus-visible + .track {
+    outline: 2px solid var(--acc);
+    outline-offset: 3px;
+  }
+  .switch-label {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .switch-hint {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
   .plans-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -138,6 +312,23 @@ const porNota = (promo: number, notas: number) => brl(promo / notas);
     gap: 3px;
     margin: 4px 0 4px;
   }
+  .plan-breakdown {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 8px 0 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--line);
+  }
+  .plan-breakdown strong {
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .plan-breakdown .plus {
+    color: var(--acc);
+  }
   .plan-per-note {
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 12px;
@@ -202,9 +393,132 @@ const porNota = (promo: number, notas: number) => brl(promo / notas);
     margin-top: 3px;
   }
 
+  /* adicional opcional (certificado digital) */
+  .addon-card {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    background: var(--surface);
+    border: 1.5px dashed var(--acc-line);
+    border-radius: 20px;
+    padding: 24px 26px;
+  }
+  .addon-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .addon-tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--amber-ink);
+    background: var(--amber-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .addon-name {
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .addon-desc {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 10px 0 0;
+    max-width: 62ch;
+  }
+  .addon-note {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--acc);
+    line-height: 1.5;
+    margin: 8px 0 0;
+  }
+  .addon-side {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    flex: 0 0 auto;
+  }
+  .addon-was {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .addon-was .old {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--muted);
+  }
+  .addon-was .save {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber-ink);
+    background: var(--amber-soft);
+    padding: 3px 7px;
+    border-radius: 999px;
+  }
+  .addon-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 3px;
+  }
+  .addon-price .cur {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+  .addon-price .val {
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .addon-price .unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .addon-split {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--acc);
+    text-align: center;
+    white-space: nowrap;
+  }
+
   @media (max-width: 920px) {
     .plans-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 720px) {
+    .addon-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .addon-side {
+      align-self: stretch;
     }
   }
   @media (max-width: 560px) {

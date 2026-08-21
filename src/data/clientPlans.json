@@ -36,5 +36,14 @@
       "valorAnual": 249.9,
       "destaque": false
     }
-  ]
+  ],
+  "addon": {
+    "nome": "Certificado Digital A1",
+    "valorOriginal": 199.0,
+    "valorPromocional": 120.0,
+    "meses": 12,
+    "descricao": "Necessário para emitir nota fiscal em nome do seu CNPJ.",
+    "nota": "O valor é anual e já vem diluído nas mensalidades acima — não tem cobrança extra na contratação. Já tem um certificado A1 válido? Marque a opção acima e pague só o plano.",
+    "notaProprioCert": "Combinado: os preços acima são só do plano. Na ativação a gente pede o arquivo do seu certificado A1 e a senha dele."
+  }
 }
