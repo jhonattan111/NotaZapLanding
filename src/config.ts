@@ -56,6 +56,11 @@ export const COMPANY = {
   emailPrivacidade: settings.privacyEmail,
   /** Comarca/foro eleito para os Termos de Uso. */
   foro: 'Nova Friburgo/RJ',
-  /** Data da última atualização dos documentos legais. */
-  atualizacao: '22 de junho de 2026',
+  /**
+   * Data da última revisão de cada documento legal — uma por documento, porque
+   * eles mudam em momentos diferentes e repetir a data em ambos faria parecer
+   * que o outro também foi alterado.
+   */
+  atualizacaoPrivacidade: '26 de agosto de 2026',
+  atualizacaoTermos: '22 de junho de 2026',
 } as const;
