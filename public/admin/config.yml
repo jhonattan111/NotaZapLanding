@@ -50,6 +50,12 @@ collections:
             required: false
             default: ""
             hint: "Número do pixel no Gerenciador de Eventos da Meta. Vazio = pixel desligado."
+          - label: "ID de métricas do GA4 (analytics)"
+            name: "ga4MeasurementId"
+            widget: "string"
+            required: false
+            default: ""
+            hint: "Formato G-XXXXXXXXXX, do fluxo de dados Web no Google Analytics. Vazio = GA4 desligado."
           - { label: "E-mail de contato geral", name: "companyEmail", widget: "string" }
           - { label: "E-mail de privacidade (LGPD/DPO)", name: "privacyEmail", widget: "string" }
 
