@@ -44,6 +44,12 @@ collections:
           - label: "Mensagem pré-preenchida do WhatsApp"
             name: "whatsappText"
             widget: "string"
+          - label: "ID do Pixel da Meta (anúncios)"
+            name: "metaPixelId"
+            widget: "string"
+            required: false
+            default: ""
+            hint: "Número do pixel no Gerenciador de Eventos da Meta. Vazio = pixel desligado."
           - { label: "E-mail de contato geral", name: "companyEmail", widget: "string" }
           - { label: "E-mail de privacidade (LGPD/DPO)", name: "privacyEmail", widget: "string" }
 
