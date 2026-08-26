@@ -19,12 +19,17 @@ const pixelId = settings.metaPixelId;
         fbq('track', 'PageView');
 
         // Todo clique em link de WhatsApp vira evento Contact — é a conversão
-        // real do site (não há formulário nem checkout).
+        // real do site (não há formulário nem checkout). content_name/category
+        // vêm do data-cta do link e separam qual seção gerou o contato.
         document.addEventListener('click', function (e) {
           var a = e.target instanceof Element
             ? e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]')
             : null;
-          if (a) fbq('track', 'Contact');
+          if (!a) return;
+          fbq('track', 'Contact', {
+            content_name: a.dataset.cta || 'nao-identificado',
+            content_category: a.dataset.ctaPlano || '(nenhum)',
+          });
         });
       </script>
       <noscript>

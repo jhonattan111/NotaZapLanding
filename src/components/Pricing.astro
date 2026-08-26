@@ -78,7 +78,14 @@ const comCertCheio = (mensal: number) => mensal + ADDON_MENSAL_ORIGINAL;
             R$ <span class="c-on">{porNota(comCert(p.valorPromocional), p.notas)}</span><span class="c-off">{porNota(p.valorPromocional, p.notas)}</span> por nota
           </div>
 
-          <a class="plan-cta" href={WHATSAPP_LINK} target="_blank" rel="noopener">
+          <a
+            class="plan-cta"
+            href={WHATSAPP_LINK}
+            data-cta="planos"
+            data-cta-plano={p.name}
+            target="_blank"
+            rel="noopener"
+          >
             Assinar {p.name}
           </a>
 

@@ -38,7 +38,14 @@ const fmt = (d: Date) =>
       <div class="blog-prose">
         <Content />
       </div>
-      <a class="oa-btn-primary" href={WHATSAPP_LINK} target="_blank" rel="noopener">
+      <a
+        class="oa-btn-primary"
+        href={WHATSAPP_LINK}
+        data-cta="blog-post"
+        data-cta-plano={post.id}
+        target="_blank"
+        rel="noopener"
+      >
         <Icon name="bubble" size={15} /> Emitir minha primeira nota
       </a>
     </article>

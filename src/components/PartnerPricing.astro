@@ -63,7 +63,12 @@ import { partnerWhatsappLink } from '../config';
           {
             PARTNER_PLANS.map((p) => (
               <td class="cta-cell">
-                <a class="par-pkg-cta" href={partnerWhatsappLink(p.name, p.phone)}>
+                <a
+                  class="par-pkg-cta"
+                  href={partnerWhatsappLink(p.name, p.phone)}
+                  data-cta="parceiros-pacote"
+                  data-cta-plano={p.name}
+                >
                   <Icon name="bubble" size={13} /> Contratar
                 </a>
               </td>

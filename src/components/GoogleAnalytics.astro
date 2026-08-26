@@ -22,13 +22,27 @@ const ga4Id = settings.ga4MeasurementId;
         gtag('js', new Date());
         gtag('config', ga4Id);
 
+        // O define:vars do Astro embrulha este script num IIFE, então a função
+        // gtag acima não vira global sozinha. A medição funciona mesmo assim
+        // (o gtag.js lê o window.dataLayer), mas snippets colados de fora —
+        // conversão do Google Ads, por exemplo — chamam window.gtag.
+        window.gtag = window.gtag || gtag;
+
         // Mesmo critério do Pixel: clique em link de WhatsApp é a conversão
         // do site. Marcar "contato_whatsapp" como evento-chave no GA4.
+        //
+        // cta_origem/cta_plano vêm do data-cta do link, para separar qual seção
+        // converte. Só aparecem nos relatórios depois de registrados como
+        // dimensões personalizadas no painel (Admin > Definições personalizadas).
         document.addEventListener('click', function (e) {
           var a = e.target instanceof Element
             ? e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]')
             : null;
-          if (a) gtag('event', 'contato_whatsapp');
+          if (!a) return;
+          gtag('event', 'contato_whatsapp', {
+            cta_origem: a.dataset.cta || 'nao-identificado',
+            cta_plano: a.dataset.ctaPlano || '(nenhum)',
+          });
         });
       </script>
     </>

@@ -62,6 +62,12 @@ collections:
             required: false
             default: ""
             hint: "Formato G-XXXXXXXXXX, do fluxo de dados Web no Google Analytics. Vazio = GA4 desligado."
+          - label: "ID do projeto no Microsoft Clarity (mapas de calor)"
+            name: "clarityProjectId"
+            widget: "string"
+            required: false
+            default: ""
+            hint: "Código do projeto em clarity.microsoft.com (ex.: abc123xyz). Vazio = Clarity desligado."
           - { label: "E-mail de contato geral", name: "companyEmail", widget: "string" }
           - { label: "E-mail de privacidade (LGPD/DPO)", name: "privacyEmail", widget: "string" }
 
