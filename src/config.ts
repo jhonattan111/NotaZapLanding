@@ -16,6 +16,14 @@ export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIC
 )}`;
 
 /**
+ * Link do botão flutuante (atendimento). Usa `whatsappFloatNumber` se
+ * preenchido em /admin; vazio = mesmo número dos demais CTAs.
+ */
+export const WHATSAPP_FLOAT_LINK = `https://wa.me/${
+  settings.whatsappFloatNumber || WHATSAPP_NUMBER
+}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
+
+/**
  * Link wa.me usado nos CTAs do Programa de Parceiros (B2B).
  * `phone` permite um número específico por pacote (formato internacional, só
  * dígitos); se omitido, usa o WhatsApp comercial padrão.

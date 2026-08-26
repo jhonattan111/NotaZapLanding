@@ -41,6 +41,12 @@ collections:
             name: "whatsappNumber"
             widget: "string"
             hint: "Formato internacional, só dígitos. Ex.: 5522997303889"
+          - label: "WhatsApp do botão flutuante (atendimento)"
+            name: "whatsappFloatNumber"
+            widget: "string"
+            required: false
+            default: ""
+            hint: "Formato internacional, só dígitos. Vazio = usa o número principal."
           - label: "Mensagem pré-preenchida do WhatsApp"
             name: "whatsappText"
             widget: "string"
